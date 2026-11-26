@@ -44,6 +44,28 @@ Reference one with `<svg aria-hidden="true"><use href="#g-cs2"/></svg>` and size
 from CSS. Brand paths are from Simple Icons (CC0); RobRun, the CS2 crosshair, the
 Phantom ghost, the coin stack and the Venmo V are drawn by hand in the same grid.
 
+### Game cards
+
+Each `.price-card` carries a `game-<name>` class and two images:
+
+| Path | What it is |
+|---|---|
+| `assets/img/games/<name>.png` | official wordmark, trimmed to its bounding box, transparent, 96px tall (4× the 24px display height) |
+| `assets/img/covers/<name>.jpg` | cover art, 700×860, brightness-normalised so every card sits under the same scrim |
+
+Both are decorative duplicates of the heading, so the `<img>` inside `h3.game-logo`
+carries the accessible name and the cover is `alt=""`.
+
+The cover sits in `.card-cover` at `z-index:-1`. **`.price-card` needs
+`isolation: isolate`** — without it the negative z-index drops the image behind the
+card's own background and the art is invisible. The scrim in `.card-cover::after`
+keeps the art readable only in the top third; everything under the price is
+near-solid so text never fights the picture.
+
+Logos are sized by height, not width, so all six share one optical cap height and
+the widths fall where they fall. The CS2 lockup ships as dark grey plus white, so
+`.game-cs2 .game-logo img` flattens it with `brightness(0) invert(1)`.
+
 
 Open `index.html` in a browser to preview. Nothing to install.
 
