@@ -5,28 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>404 — NX4 Hub</title>
 <meta name="robots" content="noindex" />
+<meta name="theme-color" content="#05060b" />
+<meta name="color-scheme" content="dark" />
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/style.css" />
 <style>
   .nf-wrap {
     min-height: 100vh;
+    min-height: 100dvh;
     display: grid;
     place-items: center;
     text-align: center;
     padding: 40px 24px;
   }
   .nf-code {
-    font-family: Sora, Inter, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(88px, 18vw, 160px);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1;
     letter-spacing: -.05em;
+    font-variant-numeric: tabular-nums;
     background: var(--grad);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+  .nf-wrap h1 { font-size: clamp(24px, 4vw, 34px); margin-top: 8px; }
   .nf-wrap p { color: var(--muted); margin: 18px 0 30px; }
 </style>
 </head>
@@ -35,6 +42,7 @@
   <div class="grid-plane"></div>
   <div class="orb orb-a"></div>
   <div class="orb orb-b"></div>
+  <div class="noise"></div>
 </div>
 
 <div class="nf-wrap">
@@ -42,8 +50,20 @@
     <div class="nf-code">404</div>
     <h1>Nothing in this lobby.</h1>
     <p>The page you're looking for doesn't exist or moved.</p>
-    <a class="btn btn-primary" href="/">Back to NX4 Hub</a>
+    <a class="btn btn-primary" id="home-link" href="/">Back to NX4 Hub</a>
   </div>
 </div>
+
+<script>
+  /* project sites on github.io live under a subpath — point the link there */
+  (function () {
+    var link = document.getElementById("home-link");
+    if (!link) return;
+    if (/\.github\.io$/i.test(location.hostname)) {
+      var first = location.pathname.split("/").filter(Boolean)[0];
+      link.setAttribute("href", first ? "/" + first + "/" : "/");
+    }
+  })();
+</script>
 </body>
 </html>

@@ -25,7 +25,25 @@ Everything lives in `index.html`: prices, payment methods, FAQ, Discord invite.
 | Discord invite | search `discord.gg/3zqqSwCRGQ` |
 | Payment handles | `#payments`, the `.pay-sub` lines |
 | Colors | `assets/css/style.css`, the `:root` block |
+| Fonts | Google Fonts link in `<head>` + `--font-display` / `--font-body` / `--font-mono` |
 | Logo | inline `<svg>` in the header, hero and footer |
+
+### Icons and game logos
+
+All marks live in one inline sprite at the top of `<body>` — the `<svg class="sprite">`
+block, one `<symbol id="...">` each. Nothing is fetched at runtime, so icons inherit
+`currentColor` and can be recoloured from CSS.
+
+| Prefix | Used for |
+|---|---|
+| `g-` | game logos (`g-fortnite`, `g-minecraft`, `g-robrun`, `g-roblox`, `g-cs2`, `g-valorant`) |
+| `p-` | payment marks (`p-cashapp`, `p-paypal`, `p-venmo`, `p-binance`, `p-phantom`, `p-crypto`, `p-robux`) |
+| `i-` | UI icons (`i-bolt`, `i-shield`, `i-gamepad`, `i-wrench`, `i-chat`, `i-wallet`, `i-discord`) |
+
+Reference one with `<svg aria-hidden="true"><use href="#g-cs2"/></svg>` and size it
+from CSS. Brand paths are from Simple Icons (CC0); RobRun, the CS2 crosshair, the
+Phantom ghost, the coin stack and the Venmo V are drawn by hand in the same grid.
+
 
 Open `index.html` in a browser to preview. Nothing to install.
 
